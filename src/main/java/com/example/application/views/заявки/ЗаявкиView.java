@@ -53,8 +53,8 @@ public class ЗаявкиView extends Div implements BeforeEnterObserver {
     private TextField role;
     private Checkbox important;
 
-    private final Button cancel = new Button("Cancel");
-    private final Button save = new Button("Save");
+    private final Button cancel = new Button("Отклонить");
+    private final Button save = new Button("Сохранить");
 
     private final BeanValidationBinder<SamplePerson> binder;
 
@@ -168,14 +168,14 @@ public class ЗаявкиView extends Div implements BeforeEnterObserver {
         editorLayoutDiv.add(editorDiv);
 
         FormLayout formLayout = new FormLayout();
-        firstName = new TextField("First Name");
-        lastName = new TextField("Last Name");
-        email = new TextField("Email");
-        phone = new TextField("Phone");
-        dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new TextField("Occupation");
-        role = new TextField("Role");
-        important = new Checkbox("Important");
+        firstName = new TextField("Страхователь");
+        lastName = new TextField("Дебитор");
+        email = new TextField("Почта");
+        phone = new TextField("Запрашиваемый лимит");
+        dateOfBirth = new DatePicker("Дата создания");
+        occupation = new TextField("Статус");
+        role = new TextField("Менеджер");
+        important = new Checkbox("Одобрено");
         formLayout.add(firstName, lastName, email, phone, dateOfBirth, occupation, role, important);
 
         editorDiv.add(formLayout);

@@ -55,7 +55,11 @@ public class ДоговорыView extends Div {
         addClassNames("договоры-view");
 
         filters = new Filters(() -> refreshGrid());
-        VerticalLayout layout = new VerticalLayout(createMobileFilters(), filters, createGrid());
+        Button createContract = new Button("Создать договор");
+        createContract.setWidth("min-content");
+        createContract.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        VerticalLayout layout = new VerticalLayout(createContract, createMobileFilters(), filters, createGrid());
         layout.setSizeFull();
         layout.setPadding(false);
         layout.setSpacing(false);
@@ -88,11 +92,13 @@ public class ДоговорыView extends Div {
 
     public static class Filters extends Div implements Specification<SamplePerson> {
 
-        private final TextField name = new TextField("Name");
-        private final TextField phone = new TextField("Phone");
-        private final DatePicker startDate = new DatePicker("Date of Birth");
+        Button buttonPrimary = new Button("Создать договор");
+        // buttonPrimary.setText();
+        private final TextField name = new TextField("Cтрахователь");
+        private final TextField phone = new TextField("ИНН");
+        private final DatePicker startDate = new DatePicker("Срок договора");
         private final DatePicker endDate = new DatePicker();
-        private final MultiSelectComboBox<String> occupations = new MultiSelectComboBox<>("Occupation");
+        private final MultiSelectComboBox<String> occupations = new MultiSelectComboBox<>("Валюта");
         private final CheckboxGroup<String> roles = new CheckboxGroup<>("Role");
 
         public Filters(Runnable onSearch) {
@@ -101,15 +107,15 @@ public class ДоговорыView extends Div {
             addClassName("filter-layout");
             addClassNames(LumoUtility.Padding.Horizontal.LARGE, LumoUtility.Padding.Vertical.MEDIUM,
                     LumoUtility.BoxSizing.BORDER);
-            name.setPlaceholder("First or last name");
+            name.setPlaceholder("Название страхователя");
 
             occupations.setItems("Insurance Clerk", "Mortarman", "Beer Coil Cleaner", "Scale Attendant");
 
-            roles.setItems("Worker", "Supervisor", "Manager", "External");
+            roles.setItems("Не верифицированно", "Постоянный клиент");
             roles.addClassName("double-width");
 
             // Action buttons
-            Button resetBtn = new Button("Reset");
+            Button resetBtn = new Button("Сбросить");
             resetBtn.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
             resetBtn.addClickListener(e -> {
                 name.clear();
@@ -120,7 +126,7 @@ public class ДоговорыView extends Div {
                 roles.clear();
                 onSearch.run();
             });
-            Button searchBtn = new Button("Search");
+            Button searchBtn = new Button("Поиск");
             searchBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
             searchBtn.addClickListener(e -> onSearch.run());
 
@@ -132,13 +138,13 @@ public class ДоговорыView extends Div {
         }
 
         private Component createDateRangeFilter() {
-            startDate.setPlaceholder("From");
+            startDate.setPlaceholder("От");
 
-            endDate.setPlaceholder("To");
+            endDate.setPlaceholder("До");
 
             // For screen readers
-            startDate.setAriaLabel("From date");
-            endDate.setAriaLabel("To date");
+            startDate.setAriaLabel("От даты");
+            endDate.setAriaLabel("До даты");
 
             FlexLayout dateRangeComponent = new FlexLayout(startDate, new Text(" – "), endDate);
             dateRangeComponent.setAlignItems(FlexComponent.Alignment.BASELINE);
