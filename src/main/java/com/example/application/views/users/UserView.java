@@ -1,4 +1,4 @@
-package com.example.application.views.пользователи;
+package com.example.application.views.users;
 
 import com.example.application.data.SamplePerson;
 import com.example.application.services.SamplePersonService;
@@ -37,7 +37,7 @@ import org.springframework.orm.ObjectOptimisticLockingFailureException;
 @Route(value = "master-detail2/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
-public class ПользователиView extends Div implements BeforeEnterObserver {
+public class UserView extends Div implements BeforeEnterObserver {
 
     private final String SAMPLEPERSON_ID = "samplePersonID";
     private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "master-detail2/%s/edit";
@@ -62,7 +62,7 @@ public class ПользователиView extends Div implements BeforeEnterObse
 
     private final SamplePersonService samplePersonService;
 
-    public ПользователиView(SamplePersonService samplePersonService) {
+    public UserView(SamplePersonService samplePersonService) {
         this.samplePersonService = samplePersonService;
         addClassNames("пользователи-view");
 
@@ -102,7 +102,7 @@ public class ПользователиView extends Div implements BeforeEnterObse
                 UI.getCurrent().navigate(String.format(SAMPLEPERSON_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
             } else {
                 clearForm();
-                UI.getCurrent().navigate(ПользователиView.class);
+                UI.getCurrent().navigate(UserView.class);
             }
         });
 
@@ -128,7 +128,7 @@ public class ПользователиView extends Div implements BeforeEnterObse
                 clearForm();
                 refreshGrid();
                 Notification.show("Data updated");
-                UI.getCurrent().navigate(ПользователиView.class);
+                UI.getCurrent().navigate(UserView.class);
             } catch (ObjectOptimisticLockingFailureException exception) {
                 Notification n = Notification.show(
                         "Error updating the data. Somebody else has updated the record while you were making changes.");
@@ -154,7 +154,7 @@ public class ПользователиView extends Div implements BeforeEnterObse
                 // when a row is selected but the data is no longer available,
                 // refresh grid
                 refreshGrid();
-                event.forwardTo(ПользователиView.class);
+                event.forwardTo(UserView.class);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.application.views.новаязаявка;
+package com.example.application.views.newApplication;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.Composite;
@@ -20,9 +20,9 @@ import jakarta.annotation.security.RolesAllowed;
 @PageTitle("Новая заявка")
 @Route(value = "person-form", layout = MainLayout.class)
 @RolesAllowed("USER")
-public class НоваязаявкаView extends Composite<VerticalLayout> {
+public class NewApplicationView extends Composite<VerticalLayout> {
 
-    public НоваязаявкаView() {
+    public NewApplicationView() {
         VerticalLayout layoutColumn2 = new VerticalLayout();
         H3 h3 = new H3();
         FormLayout formLayout2Col = new FormLayout();

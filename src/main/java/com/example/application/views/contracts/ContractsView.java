@@ -1,4 +1,4 @@
-package com.example.application.views.договоры;
+package com.example.application.views.contracts;
 
 import com.example.application.data.SamplePerson;
 import com.example.application.services.SamplePersonService;
@@ -42,14 +42,14 @@ import org.springframework.data.jpa.domain.Specification;
 @RouteAlias(value = "", layout = MainLayout.class)
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
-public class ДоговорыView extends Div {
+public class ContractsView extends Div {
 
     private Grid<SamplePerson> grid;
 
     private Filters filters;
     private final SamplePersonService samplePersonService;
 
-    public ДоговорыView(SamplePersonService SamplePersonService) {
+    public ContractsView(SamplePersonService SamplePersonService) {
         this.samplePersonService = SamplePersonService;
         setSizeFull();
         addClassNames("договоры-view");

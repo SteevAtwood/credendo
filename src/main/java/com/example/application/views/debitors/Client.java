@@ -1,4 +1,4 @@
-package com.example.application.views.клиенты;
+package com.example.application.views.debitors;
 
 public class Client {
 
